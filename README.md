@@ -22,6 +22,7 @@ npm run install-all
 npm start
 ```
 Frontend server will run at http://localhost:3000
+
 Backend server will run at http://localhost:3001
 
 ## Running the test

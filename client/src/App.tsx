@@ -1,8 +1,11 @@
 // client/src/App.js
 import React, { Component } from "react";
+import axios from 'axios';
 import AddCard from './containers/AddCard/addCard';
 import AllCards from './containers/AllCards/allCards';
-import axios from 'axios';
+import {constants} from './constants';
+import './reset.css';
+import './base.css';
 
 interface State {
   cardList: Array<object>;
@@ -17,7 +20,7 @@ class App extends Component<{}, State> {
   }
   componentDidMount() {
     axios.get(
-      'http://localhost:3001/api/getAllCards'
+      `${constants.API_URL}/api/getAllCards`
     ).then(response => {
       this.setState({
         cardList: response.data.data

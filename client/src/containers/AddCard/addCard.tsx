@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {constants} from '../../constants';
+import './addCard.css';
 
 interface State {
   [key:string]: any
@@ -15,7 +17,9 @@ class AddCard extends Component<Props, State> {
     this.state = {
       name: '',
       cardNumber: '',
-      limit: ''
+      limit: '',
+      isError: false,
+      errorMessage: '',
     };
   }
   private formFields = [{
@@ -63,7 +67,7 @@ class AddCard extends Component<Props, State> {
     });
     
     axios.post(
-      'http://localhost:3001/api/addCard',
+      `${constants.API_URL}/api/addCard`,
       this.payload
     ).then((response) => {
       if(response.data.success) {
@@ -71,7 +75,17 @@ class AddCard extends Component<Props, State> {
         this.setState({
           name: '',
           cardNumber: '',
-          limit: ''
+          limit: '',
+          errorMessage: '',
+          isError: false
+        });
+      } else {
+        this.setState({
+          name: '',
+          cardNumber: '',
+          limit: '',
+          isError: true,
+          errorMessage: response.data.error
         });
       }
     });
@@ -104,10 +118,15 @@ class AddCard extends Component<Props, State> {
     return(
       <div className="c-component">
         <h2>Add</h2>
+        {
+          this.state.isError ?
+          (<div className="error-message">{this.state.errorMessage}</div>)
+          : ''
+        }
         <form onSubmit={this.addCard} >
           { this.formFields.map((field, key) => {
             return (
-              <div key={key}>
+              <div key={key} className="field-row">
                 <label htmlFor={`input_${field.name}`}>{field.label}</label>
                 <input
                   type={field.type}

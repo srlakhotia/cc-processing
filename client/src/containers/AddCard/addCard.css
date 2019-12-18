@@ -1,0 +1,49 @@
+
+.field-row {
+  margin-bottom: 20px;
+}
+
+.field-row > label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.field-row > input[type="text"] {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 16px;
+  border: 1px solid teal;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 5px 30px;
+  background: teal;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.error-message {
+  color: red;
+  background: pink;
+  border: 1px solid red;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .field-row > input[type="text"] {
+    width: 400px;
+    padding: 15px;
+    box-sizing: content-box;
+  }
+  .error-message {
+    width: 400px;
+    box-sizing: content-box;
+  }
+}
